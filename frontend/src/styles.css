@@ -10,6 +10,27 @@
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dark) #ece7de;
+}
+
+/* Custom Luxury Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ece7de;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
 }
 
 html {
@@ -857,5 +878,604 @@ figcaption em {
     text-align: center;
   }
 }
+
+/* Where It's From Section */
+.where-its-from {
+  padding: 160px 8vw;
+  background: #ece7de;
+  color: var(--ink-heavy);
+  position: relative;
+  overflow: hidden;
+}
+
+.where-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 7vw;
+  align-items: center;
+}
+
+.where-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-tag {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.where-content h2 {
+  font-family: var(--serif);
+  font-size: clamp(42px, 4.8vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  margin: 0 0 28px;
+  color: var(--ink-heavy);
+}
+
+.where-content p {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.75;
+  color: #334155;
+  font-weight: 500;
+  margin: 0 0 44px;
+  max-width: 560px;
+}
+
+.where-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-val {
+  font-family: var(--serif);
+  font-size: clamp(32px, 3vw, 46px);
+  font-weight: 700;
+  color: var(--ink-heavy);
+  line-height: 1;
+}
+
+.stat-lbl {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+}
+
+.where-art {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nature-art-container {
+  width: 100%;
+  max-width: 620px;
+}
+
+.nature-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Alkalinity Section */
+.alkalinity-section {
+  padding: 160px 8vw;
+  background: var(--ink-heavy);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.alk-bg-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.alk-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.alk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  gap: 40px;
+}
+
+.alk-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(44px, 5.2vw, 84px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.alk-meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+.alk-meta .highlight {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.alk-table {
+  border-top: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 16px;
+}
+
+.alk-row {
+  display: grid;
+  grid-template-columns: 240px 110px 1fr;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--sans);
+  font-size: 13px;
+}
+
+.alk-row:last-child {
+  border-bottom: none;
+}
+
+.alk-col-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.alk-col-val {
+  color: var(--gold);
+  font-weight: 700;
+  text-align: right;
+  padding-right: 36px;
+}
+
+.alk-col-bar {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.alk-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.alk-footnote {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.42);
+  margin: 0 0 80px;
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 700px;
+}
+
+.alk-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+.alk-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-tag {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+}
+
+.alk-card h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.alk-card p {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 400;
+  margin: 0;
+}
+
+.alk-disclaimer {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.32);
+  text-align: left;
+  letter-spacing: 0.04em;
+}
+
+/* Responsive styles for new sections */
+@media (max-width: 800px) {
+  .where-its-from {
+    padding: 100px 7vw;
+  }
+  .where-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .where-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .alkalinity-section {
+    padding: 100px 7vw;
+  }
+  .alk-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .alk-meta {
+    text-align: left;
+  }
+  .alk-row {
+    grid-template-columns: 1fr 80px;
+    gap: 8px;
+    padding: 14px 0;
+  }
+  .alk-col-bar {
+    grid-column: 1 / -1;
+    margin-top: 6px;
+  }
+  .alk-col-val {
+    padding-right: 0;
+  }
+  .alk-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+/* Wash Cycle Section */
+.wash-cycle-section {
+  padding: 160px 8vw;
+  background: var(--paper);
+  color: var(--ink-heavy);
+  position: relative;
+  overflow: hidden;
+}
+
+.wash-bg-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wash-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.wash-header {
+  margin-bottom: 54px;
+}
+
+.wash-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 4.8vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: var(--ink-heavy);
+  margin: 0 0 24px;
+}
+
+.wash-tags {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.wash-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold-dark);
+}
+
+.wash-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 6vw;
+  align-items: center;
+}
+
+.wash-card-wrapper {
+  width: 100%;
+}
+
+.wash-bottle-card {
+  background: #ece7de;
+  border-radius: 4px;
+  padding: 40px 24px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 540px;
+  border: 1px solid rgba(7, 21, 45, 0.08);
+  box-shadow: inset 0 0 40px rgba(7, 21, 45, 0.02);
+}
+
+.wash-bottle-stage {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wash-bottle-stage .bottle {
+  top: 48%;
+  scale: 1.05;
+}
+
+.wash-card-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.wash-features {
+  display: flex;
+  flex-direction: column;
+}
+
+.wash-feature-row {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 24px;
+  padding: 34px 0;
+  border-top: 1px solid rgba(7, 21, 45, 0.12);
+}
+
+.wash-feature-row:last-child {
+  border-bottom: 1px solid rgba(7, 21, 45, 0.12);
+}
+
+.feature-num {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+
+.feature-text h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink-heavy);
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.feature-text p {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: #475569;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Responsive updates for wash cycle section */
+@media (max-width: 800px) {
+  .wash-cycle-section {
+    padding: 100px 7vw;
+  }
+  .wash-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .wash-tags {
+    gap: 18px;
+  }
+}
+
+/* Rooms Notice Section */
+.rooms-section {
+  padding: 160px 8vw;
+  background: var(--paper);
+  color: var(--ink-heavy);
+  position: relative;
+  overflow: hidden;
+}
+
+.rooms-bg-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rooms-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.rooms-header {
+  margin-bottom: 64px;
+}
+
+.rooms-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 4.8vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: var(--ink-heavy);
+  margin: 0;
+  max-width: 800px;
+}
+
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid rgba(7, 21, 45, 0.15);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.room-card {
+  padding: 50px 32px 42px;
+  border-right: 1px solid rgba(7, 21, 45, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: background 0.3s ease;
+}
+
+.room-card:last-child {
+  border-right: none;
+}
+
+.room-card:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.room-key {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  letter-spacing: 0.14em;
+  margin-bottom: 40px;
+  display: block;
+}
+
+.room-card h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink-heavy);
+  margin: 0 0 14px;
+  line-height: 1.2;
+}
+
+.room-card p {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.65;
+  color: #475569;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Responsive updates for rooms section */
+@media (max-width: 900px) {
+  .rooms-section {
+    padding: 100px 7vw;
+  }
+  .rooms-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .room-card {
+    border-bottom: 1px solid rgba(7, 21, 45, 0.15);
+  }
+  .room-card:nth-child(2n) {
+    border-right: none;
+  }
+  .room-card:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .rooms-grid {
+    grid-template-columns: 1fr;
+  }
+  .room-card {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(7, 21, 45, 0.15);
+  }
+  .room-card:last-child {
+    border-bottom: none;
+  }
+}
+
+
+
 
 
