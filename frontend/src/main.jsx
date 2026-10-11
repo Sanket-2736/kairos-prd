@@ -5,14 +5,14 @@ import Lenis from 'lenis';
 import './styles.css';
 import label from './assets/kairos-label.png';
 
-const NAV=[['PHILOSOPHY','philosophy'],['THE NAME','name'],['TOPOGRAPHY','topography'],['SOURCE','source'],['DESIGN','wash-cycle'],['COMPOSITION','alkalinity'],['BOTTLE','bottle'],['MOMENTS','moments']];
-const moments=[['LONG TABLE','Copenhagen','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85'],['FIRST TOAST','London','https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=85'],['TERRACE','Amalfi','https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85'],['QUIET HOUR','Lake Como','https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=85']];
+const NAV=[['ABOUT KAIRÓS','philosophy'],['COLLECTION','wash-cycle'],['ALKALINE WATER','alkalinity'],['FOR HOSPITALITY','rooms'],['QUALITY & STANDARDS','source'],['CONTACT','contact']];
+const moments=[['FINE DINING TABLE SERVICE','Curated Course Pairings','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85'],['WELCOME RECEPTIONS & EVENTS','Signature Banqueting','https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=85'],['RESORT & TERRACE SERVICE','Alfresco Dining','https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85'],['HOTEL SUITE AMENITIES','Considered Guest Stays','https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=85']];
 function useReveal(){return {initial:{opacity:0,y:35},whileInView:{opacity:1,y:0},viewport:{once:true,amount:.2},transition:{duration:.8,ease:[.22,1,.36,1]}}}
 function ContourField(){const ref=useRef(null);useEffect(()=>{const svg=ref.current,NS='http://www.w3.org/2000/svg',cx=800,cy=455,TAU=Math.PI*2;const rings=[];const path=(r,s,n=150)=>{let d='';for(let i=0;i<=n;i++){let a=i/n*TAU;let q=1+.055*Math.sin(a*3+s)+.03*Math.sin(a*7-s*.7)+.018*Math.cos(a*11+s);let x=cx+Math.cos(a)*r*q*1.18,y=cy+Math.sin(a)*r*q*.63;d+=(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)}return d+'Z'};for(let i=0;i<7;i++){let p=document.createElementNS(NS,'path');p.setAttribute('d',path(80+i*120,i*.77));p.setAttribute('class','contour');svg.appendChild(p);rings.push({p,i,phase:i/7,dir:i%2?1:-1})}let t=0,last=performance.now(),raf;const tick=now=>{let dt=Math.min(40,now-last);last=now;t+=dt*.0005;rings.forEach(r=>{let p=(t*(.72+(r.i%7)*.035)+r.phase*2)%2,u=p<1?p:2-p;let e=u*u*(3-2*u),scale=.34+e*(.9),angle=r.dir*(p<1?p*170:170+(p-1)*170);r.p.setAttribute('transform',`translate(${cx} ${cy}) rotate(${angle}) scale(${scale}) translate(${-cx} ${-cy})`);r.p.style.opacity=(.035+Math.sin(Math.PI*u)*(.12+(r.i%6)*.018)).toFixed(3)});raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick);return()=>cancelAnimationFrame(raf)},[]);return <svg ref={ref} className="contours" viewBox="0 0 1600 900" preserveAspectRatio="none"/>}
 function Bottle({spin=0}){return <div className="bottle" style={{transform:`translateX(-50%) rotateY(${spin}deg)`}}><div className="cap"/><div className="neck"/><div className="glass"><img src={label}/><span className="shine"/></div></div>}
-function Nav(){return <nav><a className="brand" href="#top"><img src="/logo.png" alt="KAIROS Logo" className="brand-logo"/><span>KAIROS</span></a><div className="navlinks">{NAV.map(([t,id])=><a key={id} href={'#'+id}>{t}</a>)}</div><a className="navmeta" href="#contact">ENQUIRE</a></nav>}
+function Nav(){return <nav><a className="brand" href="#top"><img src="/logo.png" alt="KAIROS Logo" className="brand-logo"/><span>KAIROS</span></a><div className="navlinks">{NAV.map(([t,id])=><a key={id} href={'#'+id}>{t}</a>)}</div><a className="navmeta" href="#contact">REQUEST A QUOTE</a></nav>}
 function Chapter({num,title,children,id,dark=false}){const r=useReveal();return <section id={id} className={'chapter '+(dark?'dark':'')}><div className="chapter-grid"><motion.div {...r} className="chapter-num">{num}</motion.div><motion.div {...r} transition={{...r.transition,delay:.08}}><h2 dangerouslySetInnerHTML={{__html:title}}/>{children}</motion.div></div></section>}
-function Hero(){return <section className="hero" id="top"><ContourField/><div className="hero-large-text">KAIROS</div><div className="hero-copy"><motion.span initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.2}} className="hero-tagline">NATURAL SPRING WATER · KAIROS · EST. MMXXVI</motion.span><motion.h1 initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.4}}>The Opportune<br/><i>Moment.</i></motion.h1></div><div className="source"/><motion.div initial={{y:200,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:1,ease:[.22,1,.36,1]}}><Bottle/></motion.div><motion.div className="hero-foot" initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.6}}><span>PURITY — REFINEMENT — PRECISION — PRESENCE</span></motion.div><motion.div className="scroll" initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.8}}>SCROLL</motion.div></section>}
+function Hero(){return <section className="hero" id="top"><ContourField/><div className="hero-large-text">KAIROS</div><div className="hero-copy"><motion.span initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.2}} className="hero-tagline">PREMIUM ALKALINE WATER · HOSPITALITY SPECIFICATION · EST. MMXXVI</motion.span><motion.h1 initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.4}}>The Opportune<br/><i>Moment.</i></motion.h1><motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.5}} className="hero-sub">Premium alkaline water for hotels, restaurants, and considered hospitality experiences.</motion.p><motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.6}} className="hero-actions"><a href="#wash-cycle" className="hero-btn">Explore the Collection</a><a href="#contact" className="hero-btn hero-btn-alt">Partner with Kairós</a></motion.div></div><div className="source"/><motion.div initial={{y:200,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:1,ease:[.22,1,.36,1]}}><Bottle/></motion.div><motion.div className="hero-foot" initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.6}}><span>PURITY — REFINEMENT — PRECISION — PRESENCE</span><span>LUXURY B2B HOSPITALITY SUPPLY</span></motion.div><motion.div className="scroll" initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.8,delay:1.8}}>SCROLL</motion.div></section>}
 
 function NatureMountainArt() {
   return (
@@ -96,23 +96,23 @@ function WhereItsFrom() {
     <section id="source" className="where-its-from">
       <div className="where-container">
         <motion.div {...r} className="where-content">
-          <span className="section-tag">— WHERE IT'S FROM</span>
-          <h2>Hills, river, and a<br/>bottling line built<br/>around both.</h2>
+          <span className="section-tag">— QUALITY & STANDARDS</span>
+          <h2>Defined by<br/>the Details.</h2>
           <p>
-            The label carries the landscape Kairós is built for — a mountain silhouette, a river run, and the sundial mark that gives the brand its name. Sourced and mineral-balanced, then bottled in returnable glass close to where it's served, so the trip from source to table stays short.
+            Every element of Kairós is considered, from the product presentation to the details that shape the experience. The visual language honours the quiet contours of the natural world, paired with a disciplined standard for hospitality presentation.
           </p>
           <div className="where-stats">
             <div className="stat-item">
               <span className="stat-val">8.5+</span>
-              <span className="stat-lbl">PH, ALKALINE</span>
+              <span className="stat-lbl">PH, ALKALINE TARGET</span>
             </div>
             <div className="stat-item">
-              <span className="stat-val">100%</span>
-              <span className="stat-lbl">GLASS, RETURNABLE</span>
+              <span className="stat-val">Flint</span>
+              <span className="stat-lbl">GLASS BOTTLE</span>
             </div>
             <div className="stat-item">
-              <span className="stat-val">Pune</span>
-              <span className="stat-lbl">BOTTLED & SERVED</span>
+              <span className="stat-val">B2B</span>
+              <span className="stat-lbl">HOSPITALITY SUPPLY</span>
             </div>
           </div>
         </motion.div>
@@ -143,7 +143,10 @@ function WashCycleSection() {
 
       <div className="wash-container">
         <motion.div {...r} className="wash-header">
-          <h2>One bottle, built for the wash<br/>cycle, not the bin.</h2>
+          <h2>Designed with Intention.<br/>Presented with Care.</h2>
+          <p>
+            Thoughtful packaging and a distinctive bottle design bring a refined presence to the hospitality experience.
+          </p>
           <div className="wash-tags">
             <span className="wash-tag">
               <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M6 0C6 0 0 7 0 10C0 12.2091 1.79086 14 4 14C5.07 14 6 13.5 6 13.5C6 13.5 6.93 14 8 14C10.2091 14 12 12.2091 12 10C12 7 6 0 6 0Z" fill="var(--gold-dark)" opacity="0.8"/></svg>
@@ -151,11 +154,11 @@ function WashCycleSection() {
             </span>
             <span className="wash-tag">
               <svg width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M7 0L0 12H14L7 0Z" stroke="var(--gold-dark)" strokeWidth="1.4" fill="none"/></svg>
-              From Source
+              Flint Glass Packaging
             </span>
             <span className="wash-tag">
               <svg width="13" height="14" viewBox="0 0 13 14" fill="none"><path d="M6.5 0C6.5 0 0 3.5 0 9.5C0 12 3 14 6.5 14C10 14 13 12 13 9.5C13 3.5 6.5 0 6.5 0Z" stroke="var(--gold-dark)" strokeWidth="1.4" fill="none"/></svg>
-              Returnable Glass
+              750ml &amp; 330ml Formats
             </span>
           </div>
         </motion.div>
@@ -166,7 +169,7 @@ function WashCycleSection() {
               <div className="wash-bottle-stage">
                 <Bottle spin={0} />
               </div>
-              <span className="wash-card-label">KAIROS · ALKALINE WATER</span>
+              <span className="wash-card-label">KAIRÓS · HOSPITALITY COLLECTION</span>
             </div>
           </motion.div>
 
@@ -174,24 +177,24 @@ function WashCycleSection() {
             <div className="wash-feature-row">
               <span className="feature-num">01</span>
               <div className="feature-text">
-                <h3>Clear glass</h3>
-                <p>A cylindrical glass bottle with a lug-cap neck, chosen so nothing stands between the guest and the water.</p>
+                <h3>Curated Bottle Formats</h3>
+                <p>Available in 750ml for table service and 330ml for in-room guest amenities, crafted in cylindrical flint glass for pristine clarity.</p>
               </div>
             </div>
 
             <div className="wash-feature-row">
               <span className="feature-num">02</span>
               <div className="feature-text">
-                <h3>One label, low light or bright</h3>
-                <p>Gold linework on navy — a mountain silhouette, sundial mark and river run, readable across a dim table or a showroom floor.</p>
+                <h3>Refined Presentation</h3>
+                <p>Champagne-gold detailing on deep navy — a restrained design language engineered to complement fine dining tables and boutique lounges.</p>
               </div>
             </div>
 
             <div className="wash-feature-row">
               <span className="feature-num">03</span>
               <div className="feature-text">
-                <h3>Tamper-evident</h3>
-                <p>A destructible seal at the neck, visible from across the table — trust, at a glance.</p>
+                <h3>Tamper-Evident Closure</h3>
+                <p>A precision seal at the neck provides immediate visual assurance of purity, safety, and brand integrity.</p>
               </div>
             </div>
           </motion.div>
@@ -202,57 +205,57 @@ function WashCycleSection() {
 }
 
 const MINERALS = [
-  { name: 'pH, alkaline', value: '8.5 pH', percent: 85 },
-  { name: 'Total Dissolved Solids', value: '160 mg/l', percent: 60 },
-  { name: 'Calcium (Ca²⁺)', value: '32 mg/l', percent: 40 },
-  { name: 'Magnesium (Mg²⁺)', value: '14 mg/l', percent: 25 },
-  { name: 'Bicarbonate (HCO₃⁻)', value: '120 mg/l', percent: 50 },
-  { name: 'Sodium (Na⁺)', value: '7 mg/l', percent: 15 },
+  { name: 'Target Alkalinity (pH)', value: '8.5 pH', percent: 85 },
+  { name: 'Total Dissolved Solids (TDS)', value: '160 mg/L', percent: 60 },
+  { name: 'Calcium (Ca²⁺)', value: '32 mg/L', percent: 40 },
+  { name: 'Magnesium (Mg²⁺)', value: '14 mg/L', percent: 25 },
+  { name: 'Bicarbonate (HCO₃⁻)', value: '120 mg/L', percent: 50 },
+  { name: 'Sodium (Na⁺)', value: '7 mg/L', percent: 15 },
 ];
 
 const ALK_CARDS = [
   {
-    tag: 'pH 8.5+',
-    title: 'Smoother on the palate',
-    desc: 'Higher pH softens the sharp, flat edge some guests notice in still water — reads cleaner alongside food.'
+    tag: 'pH 8.5 Target',
+    title: 'Balanced Palate Character',
+    desc: 'Target alkalinity designed to deliver a smooth, neutral mouthfeel that pairs cleanly with culinary tasting courses.'
   },
   {
-    tag: 'Ca²⁺ Mg²⁺',
-    title: 'Mineral-forward hydration',
-    desc: 'Calcium and magnesium are balanced back in after purification, rather than stripped out and left flat.'
+    tag: 'Ca²⁺ & Mg²⁺',
+    title: 'Harmonious Mineral Profile',
+    desc: 'Carefully calibrated calcium and magnesium proportions contributing to clean taste and table hydration.'
   },
   {
     tag: 'HCO₃⁻',
-    title: 'Gentler on sensitive stomachs',
-    desc: 'Bicarbonate content is tuned for guests who find highly acidic bottled waters harsh after meals.'
+    title: 'Clean, Structured Finish',
+    desc: 'Bicarbonate balance provides a refreshing, crisp finish suited to fine dining and beverage service.'
   },
   {
-    tag: 'Glass',
-    title: 'Returnable, not disposable',
-    desc: 'Every bottle is rated for repeated wash-fill-cap cycles through your existing service flow.'
+    tag: 'Glass Presentation',
+    title: 'Flint Glass Preservation',
+    desc: 'Bottled in inert glass to protect mineral integrity, flavour neutrality, and visual sophistication.'
   }
 ];
 
 const ROOMS_DATA = [
   {
-    key: 'A',
-    title: 'Five-Star Hotels',
-    desc: 'In-room and restaurant service, aligned to your existing amenity standards.'
+    key: '01',
+    title: 'Hotels & Resorts',
+    desc: 'In-room guest amenities, presidential suites, and turndown presentation aligned to high-end hospitality standards.'
   },
   {
-    key: 'B',
-    title: 'Fine-Dining Restaurants',
-    desc: 'A water programme that holds its own on a curated wine and water list.'
+    key: '02',
+    title: 'Restaurants & Fine Dining',
+    desc: 'Dedicated table service designed to complement culinary tasting menus, pairing programs, and sommelier curation.'
   },
   {
-    key: 'C',
-    title: 'Luxury Auto Showrooms',
-    desc: 'Guest hospitality for test-drive lounges and delivery experiences.'
+    key: '03',
+    title: 'Cafés & Lounges',
+    desc: 'Refined beverage service for boutique lounges, hotel lobbies, and private members’ clubs.'
   },
   {
-    key: 'D',
-    title: 'Corporate & Premium Events',
-    desc: 'Boardrooms, offsites and private functions where the details are the point.'
+    key: '04',
+    title: 'Events & Corporate Hospitality',
+    desc: 'Distinguished boardroom supply, private banquets, and executive occasions where presentation matters.'
   }
 ];
 
@@ -267,7 +270,11 @@ function RoomsNoticeSection() {
 
       <div className="rooms-container">
         <motion.div {...r} className="rooms-header">
-          <h2>Built for rooms where the<br/>water is already being<br/>noticed.</h2>
+          <span className="section-tag">— HOSPITALITY APPLICATIONS</span>
+          <h2>Designed for the<br/>Hospitality Experience.</h2>
+          <p className="rooms-sub">
+            From guest rooms and fine-dining tables to lounges and special occasions, Kairós is designed to complement considered hospitality environments.
+          </p>
         </motion.div>
 
         <motion.div {...r} transition={{ ...r.transition, delay: 0.15 }} className="rooms-grid">
@@ -285,7 +292,6 @@ function RoomsNoticeSection() {
 }
 
 function AlkalinitySection() {
-
   const r = useReveal();
   return (
     <section id="alkalinity" className="alkalinity-section">
@@ -296,11 +302,16 @@ function AlkalinitySection() {
 
       <div className="alk-container">
         <motion.div {...r} className="alk-header">
-          <h2>The alkalinity is the<br/>product.</h2>
+          <div>
+            <h2>Defined by Its<br/>Specifications.</h2>
+            <p style={{ marginTop: '16px', color: 'rgba(255, 255, 255, 0.72)', fontSize: '15px', fontFamily: 'var(--sans)', fontWeight: '400', maxWidth: '620px', lineHeight: '1.7' }}>
+              Explore the characteristics of Kairós alkaline water through verified product information and quality specifications.
+            </p>
+          </div>
           <div className="alk-meta">
-            <div>Alkaline Water, pH 8.5+</div>
-            <div>Printed on every label — <span className="highlight">no hidden composition</span></div>
-            <div>Batch-tested, glass-bottled</div>
+            <div>Alkaline Water · pH 8.5 Target Specification</div>
+            <div>Clear Product Composition — <span className="highlight">Verified Quality Standards</span></div>
+            <div>Batch-Tested Quality Assurance · Glass Bottled</div>
           </div>
         </motion.div>
 
@@ -317,7 +328,7 @@ function AlkalinitySection() {
         </motion.div>
         
         <p className="alk-footnote">
-          Illustrative composition for presentation purposes. Final certified values are fixed at plant qualification and printed on the production label.
+          Standard specification targets shown above. Analytical values are confirmed per production batch and stated on certified commercial labels.
         </p>
 
         <motion.div {...r} transition={{ ...r.transition, delay: 0.2 }} className="alk-cards-grid">
@@ -331,14 +342,14 @@ function AlkalinitySection() {
         </motion.div>
 
         <div className="alk-disclaimer">
-          Alkaline water is not a medical treatment and these are general product characteristics, not health claims.
+          Kairós alkaline water is a premium drinking water formulated for quality and taste. It is not intended for medical treatment, detoxification, or therapeutic use.
         </div>
       </div>
     </section>
   );
 }
 
-function Bottle360(){const [deg,setDeg]=useState(0),drag=useRef(false),x=useRef(0);const normalizedDeg=Math.round(((deg%360)+360)%360);const handleInputChange=(e)=>{const val=parseFloat(e.target.value);if(!isNaN(val))setDeg(val);};return <section className="spin-section" id="360"><div className="spin-copy"><span>07 · IN THE ROUND</span><h2>A bottle that<br/><i>reveals itself.</i></h2><p>Drag across the bottle or adjust the rotation input below to view all angles.</p><div className="spin-controls"><label className="spin-label" htmlFor="deg-input">ROTATION ANGLE</label><div className="spin-input-wrapper"><input id="deg-input" type="number" min="0" max="360" value={normalizedDeg} onChange={handleInputChange} className="spin-number-input"/><span className="unit">°</span></div><input type="range" min="0" max="360" value={normalizedDeg} onChange={handleInputChange} className="spin-slider"/></div></div><div className="spin-stage" onPointerDown={e=>{drag.current=true;x.current=e.clientX;e.currentTarget.setPointerCapture(e.pointerId)}} onPointerMove={e=>{if(!drag.current)return;setDeg(d=>d+(e.clientX-x.current)*.65);x.current=e.clientX}} onPointerUp={()=>drag.current=false} onPointerCancel={()=>drag.current=false}><Bottle spin={deg}/><div className="spin-ring"/></div></section>}
+function Bottle360(){const [deg,setDeg]=useState(0),drag=useRef(false),x=useRef(0);const normalizedDeg=Math.round(((deg%360)+360)%360);const handleInputChange=(e)=>{const val=parseFloat(e.target.value);if(!isNaN(val))setDeg(val);};return <section className="spin-section" id="360"><div className="spin-copy"><span>07 · PRODUCT SHOWCASE</span><h2>Discover the<br/><i>Kairós Bottle.</i></h2><p>Explore the form, finish and details behind the Kairós water experience.</p><div className="spin-controls"><label className="spin-label" htmlFor="deg-input">ROTATION ANGLE</label><div className="spin-input-wrapper"><input id="deg-input" type="number" min="0" max="360" value={normalizedDeg} onChange={handleInputChange} className="spin-number-input"/><span className="unit">°</span></div><input type="range" min="0" max="360" value={normalizedDeg} onChange={handleInputChange} className="spin-slider"/></div></div><div className="spin-stage" onPointerDown={e=>{drag.current=true;x.current=e.clientX;e.currentTarget.setPointerCapture(e.pointerId)}} onPointerMove={e=>{if(!drag.current)return;setDeg(d=>d+(e.clientX-x.current)*.65);x.current=e.clientX}} onPointerUp={()=>drag.current=false} onPointerCancel={()=>drag.current=false}><Bottle spin={deg}/><div className="spin-ring"/></div></section>}
 
 function App(){
   useEffect(()=>{const l=new Lenis({duration:1.15,smoothWheel:true});let raf;const f=t=>{l.raf(t);raf=requestAnimationFrame(f)};raf=requestAnimationFrame(f);return()=>{cancelAnimationFrame(raf);l.destroy()}},[]);
@@ -372,49 +383,55 @@ function App(){
       <Nav/>
       <main>
         <Hero/>
-        <Chapter num="01" title="Water is never<br/>simply water." id="philosophy">
-          <p>It is the pause before the toast, the stillness between courses, the quiet signature of a table set with intention.</p>
-          <p>Kairos was composed the way a fragrance is composed — with restraint, provenance, and the conviction that the most essential element on the table should also be the most considered.</p>
+        <Chapter num="01" title="Water is Never<br/>Simply Water." id="philosophy">
+          <p>Every detail matters. From the character of the water to the form of the bottle, Kairós brings a considered approach to an everyday essential.</p>
+          <p>It is the stillness between courses, the quiet signature of a table set with intention, and a dependable standard for premium dining and hospitality.</p>
         </Chapter>
-        <Chapter num="02" title="Time that<br/><i>matters.</i>" id="name" dark>
-          <p>The Greeks held two words for time. Chronos is the time that passes. Kairos is the time that matters — the fleeting, opportune instant when everything aligns.</p>
+        <Chapter num="02" title="Made for the Moments<br/><i>That Matter.</i>" id="name" dark>
+          <p>From a carefully prepared table to a considered guest experience, Kairós brings refinement to the details that make hospitality memorable.</p>
+          <p>In classical thought, <em>Kairós</em> represents the opportune instant when time aligns with purpose. We craft our bottled water to honour that standard in every guest encounter.</p>
+          <a href="#rooms" className="chapter-cta">Discover Hospitality Solutions →</a>
         </Chapter>
-        <Chapter num="03" title="A landscape,<br/><i>drawn in a single breath.</i>" id="topography">
-          <p>The label carries a topographic language inspired by the landscape of a source valley. Each contour becomes a visual measure of place.</p>
+        <Chapter num="03" title="A Considered Form.<br/><i>A Distinctive Presence.</i>" id="topography">
+          <p>A restrained design language, inspired by the quiet contours of the natural world.</p>
           <div className="specs">
-            <span>LINE WEIGHT 0.5 PT</span>
-            <span>CONTOUR INTERVAL 40 M</span>
-            <span>DEEP NAVY</span>
-            <span>CHAMPAGNE GOLD</span>
+            <span>CONTOUR LINEWORK 0.5 PT</span>
+            <span>EDITORIAL PROPORTIONS</span>
+            <span>DEEP NAVY PALETTE</span>
+            <span>CHAMPAGNE GOLD ACCENT</span>
           </div>
         </Chapter>
         <WhereItsFrom/>
         <WashCycleSection/>
         <AlkalinitySection/>
         <RoomsNoticeSection/>
-        <Chapter num="06" title="Made to<br/><i>be considered.</i>" id="bottle">
-          <p>Brushed champagne gold. Fine contour detailing. Flint glass. A bottle designed to belong at the table.</p>
+        <Chapter num="06" title="Thoughtful in<br/><i>Every Detail.</i>" id="bottle">
+          <p>A considered approach to product design, verified specifications, and the details that define a premium experience.</p>
+          <p>Crafted in flint glass with champagne-gold accents, Kairós brings understated poise to hotel suites, restaurants, and executive tables.</p>
         </Chapter>
         <Bottle360/>
         <section className="moments" id="moments">
           <div className="moment-head">
-            <span>08 · MOMENTS</span>
-            <h2>For the moments<br/><i>that matter.</i></h2>
+            <span>08 · WHERE KAIRÓS BELONGS</span>
+            <h2>Where Kairós<br/><i>Belongs.</i></h2>
+            <p className="moment-sub">
+              From exceptional dining experiences to considered guest stays, discover the settings in which Kairós comes to life.
+            </p>
           </div>
           <div className="moment-grid">
             {moments.map((m,i)=>(
               <motion.figure key={m[0]} {...useReveal()} transition={{duration:.8,delay:i*.08}}>
-                <img src={m[2]}/>
+                <img src={m[2]} alt={m[0]}/>
                 <figcaption><span>{m[0]}</span><em>{m[1]}</em></figcaption>
               </motion.figure>
             ))}
           </div>
         </section>
         <section className="contact" id="contact">
-          <span>09 · ENQUIRE</span>
-          <h2>Make the moment<br/><i>yours.</i></h2>
-          <p>Hospitality partnerships, private events and distribution.</p>
-          {result?<div className="success">{result}</div>:<form onSubmit={onSubmit}><input required placeholder="NAME" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/><input required type="email" placeholder="EMAIL" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/><input placeholder="COMPANY" value={form.company} onChange={e=>setForm({...form,company:e.target.value})}/><textarea required placeholder="TELL US ABOUT YOUR ENQUIRY" value={form.message} onChange={e=>setForm({...form,message:e.target.value})}/><button>SUBMIT ENQUIRY</button></form>}
+          <span>09 · B2B PARTNERSHIP</span>
+          <h2>Let's Build a<br/><i>Partnership.</i></h2>
+          <p>Tell us about your venue, preferred bottle format and expected order volume. Our team will help you explore the right supply arrangement.</p>
+          {result?<div className="success">{result}</div>:<form onSubmit={onSubmit}><input required placeholder="NAME / CONTACT PERSON" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/><input required type="email" placeholder="BUSINESS EMAIL" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/><input placeholder="BUSINESS / ORGANISATION" value={form.company} onChange={e=>setForm({...form,company:e.target.value})}/><textarea required placeholder="VENUE TYPE, PREFERRED BOTTLE FORMATS (750ML / 330ML) & ESTIMATED MONTHLY VOLUME" value={form.message} onChange={e=>setForm({...form,message:e.target.value})}/><button>REQUEST A B2B QUOTE</button></form>}
           <a className="mail" href="mailto:enquiries@kairosbeverages.com">ENQUIRIES@KAIROSBEVERAGES.COM</a>
         </section>
       </main>
@@ -423,7 +440,7 @@ function App(){
           <img src="/logo.png" alt="KAIROS" className="footer-logo"/>
           <span>KAIROS BEVERAGES</span>
         </div>
-        <span>THE OPPORTUNE MOMENT</span>
+        <span>PREMIUM ALKALINE WATER · HOSPITALITY SUPPLY</span>
         <span>© MMXXVI</span>
       </footer>
     </>
